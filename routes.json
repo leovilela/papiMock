@@ -1,6 +1,7 @@
 {
     "/custom/pedido": "/pedido",
     "/custom/candidatos": "/candidatos",
-    "/custom/candidato": "/candidato"
+    "/custom/candidato": "/candidato",
+    "/custom/imagem": "/imagem"
   }
   

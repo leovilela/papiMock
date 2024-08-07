@@ -13,7 +13,39 @@ module.exports = (req, res, next) => {
     const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 
     if (dbData.hasOwnProperty(objectName)) {
-      return res.status(200).json({ message: 'Payload received', data: dbData[objectName] });
+      if (objectName === 'imagem') {
+        // Obtendo o ID do pedido do corpo da requisição
+        const { pedidoId } = req.body;
+
+        if (pedidoId !== undefined) {
+          const imagensPedido = dbData[objectName].find(pedido => pedido.pedido === pedidoId);
+          
+          if (imagensPedido) {
+            return res.status(200).json({ message: 'Payload received', data: imagensPedido.imagens });
+          } else {
+            return res.status(404).json({ message: `Pedido ${pedidoId} not found in db.json` });
+          }
+        } else {
+          return res.status(400).json({ message: 'Pedido ID not provided in the request body' });
+        }
+      } else if (objectName === 'candidato') {
+        // Obtendo o pedido do corpo da requisição
+        const { pedidoId } = req.body;
+
+        if (pedidoId !== undefined) {
+          const candidato = dbData[objectName].find(c => c.pedido === pedidoId);
+
+          if (candidato) {
+            return res.status(200).json({ message: 'Payload received', data: candidato });
+          } else {
+            return res.status(404).json({ message: `Candidato with pedidoId ${pedidoId} not found in db.json` });
+          }
+        } else {
+          return res.status(400).json({ message: 'pedidoId not provided in the request body' });
+        }
+      } else {
+        return res.status(200).json({ message: 'Payload received', data: dbData[objectName] });
+      }
     } else {
       return res.status(404).json({ message: `Object ${objectName} not found in db.json` });
     }
