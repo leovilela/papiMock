@@ -1925,5 +1925,23 @@
         }
       ]
     }
+  ],
+  "dae" : [
+    {
+      "pedido":"56131",
+      "numeroDae": "321561651321",
+      "nome": "Eduardo Santos Silva de Souza Almeida Martins Carvalho Oliveira Santos Pereira Costa Nascimento",
+      "dataPagamento": "17/09/2023",
+      "valor": "12.24",
+      "in_pago": 1
+    },
+    {
+      "pedido":"010737280-0",
+      "numeroDae": "56123214564",
+      "nome": "Nome do Candidato 3",
+      "dataPagamento": "",
+      "valor": "",
+      "in_pago": 0
+    }
   ]
 }
