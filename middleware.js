@@ -78,6 +78,29 @@ module.exports = (req, res, next) => {
             .status(400)
             .json({ message: "numeroPedido not provided in the request body" });
         }
+      } else if (objectName === "dae") {
+        // Obtendo o pedido do corpo da requisição
+        const { numeroPedido } = req.body;
+
+        if (numeroPedido !== undefined) {
+          const dae = dbData[objectName].find((c) => c.pedido === numeroPedido);
+
+          if (dae) {
+            return res
+              .status(200)
+              .json({ message: "Payload received", data: dae });
+          } else {
+            return res
+              .status(404)
+              .json({
+                message: `dae with numeroPedido ${numeroPedido} not found in db.json`,
+              });
+          }
+        } else {
+          return res
+            .status(400)
+            .json({ message: "numeroPedido not provided in the request body" });
+        }
       } else {
         return res
           .status(200)
