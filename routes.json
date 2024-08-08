@@ -2,6 +2,7 @@
     "/custom/pedido": "/pedido",
     "/custom/candidatos": "/candidatos",
     "/custom/candidato": "/candidato",
-    "/custom/imagem": "/imagem"
+    "/custom/imagem": "/imagem",
+    "/custom/pesquisapedidotabela": "/pesquisapedidotabela"
   }
   
