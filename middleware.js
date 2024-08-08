@@ -15,33 +15,33 @@ module.exports = (req, res, next) => {
     if (dbData.hasOwnProperty(objectName)) {
       if (objectName === 'imagem') {
         // Obtendo o ID do pedido do corpo da requisição
-        const { pedidoId } = req.body;
+        const { numeroPedido } = req.body;
 
-        if (pedidoId !== undefined) {
-          const imagensPedido = dbData[objectName].find(pedido => pedido.pedido === pedidoId);
+        if (numeroPedido !== undefined) {
+          const imagensPedido = dbData[objectName].find(pedido => pedido.pedido === numeroPedido);
           
           if (imagensPedido) {
             return res.status(200).json({ message: 'Payload received', data: imagensPedido.imagens });
           } else {
-            return res.status(404).json({ message: `Pedido ${pedidoId} not found in db.json` });
+            return res.status(404).json({ message: `Pedido ${numeroPedido} not found in db.json` });
           }
         } else {
           return res.status(400).json({ message: 'Pedido ID not provided in the request body' });
         }
       } else if (objectName === 'candidato') {
         // Obtendo o pedido do corpo da requisição
-        const { pedidoId } = req.body;
+        const { numeroPedido } = req.body;
 
-        if (pedidoId !== undefined) {
-          const candidato = dbData[objectName].find(c => c.pedido === pedidoId);
+        if (numeroPedido !== undefined) {
+          const candidato = dbData[objectName].find(c => c.pedido === numeroPedido);
 
           if (candidato) {
             return res.status(200).json({ message: 'Payload received', data: candidato });
           } else {
-            return res.status(404).json({ message: `Candidato with pedidoId ${pedidoId} not found in db.json` });
+            return res.status(404).json({ message: `Candidato with numeroPedido ${numeroPedido} not found in db.json` });
           }
         } else {
-          return res.status(400).json({ message: 'pedidoId not provided in the request body' });
+          return res.status(400).json({ message: 'numeroPedido not provided in the request body' });
         }
       } else {
         return res.status(200).json({ message: 'Payload received', data: dbData[objectName] });
